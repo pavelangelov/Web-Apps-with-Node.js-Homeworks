@@ -31,7 +31,7 @@ let superheroSchema = new Schema({
 		type: String,
 		required: true
 	},
-	fractions: [{ type: Schema.Types.ObjectId, ref: "Fraction" }],
+	fractions: [{ type: String, ref: "Fraction" }],
 	powers: [ {type: Schema.Types.ObjectId, ref: "Power"} ]
 });
 superheroSchema.pre("save", true, function (next, done) {

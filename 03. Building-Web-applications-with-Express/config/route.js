@@ -42,7 +42,8 @@ module.exports = (app) => {
 				.then(superheroes => {
 					console.log(superheroes);
 					res.render("user-superheroes", { username, superheroes });
-				});
+				})
+				.catch(err => console.log(err));
 		})
 		.get("/users/:username/fractions", (req, res) => {
 
@@ -66,12 +67,7 @@ module.exports = (app) => {
 									.map(fr => {
 										return {name: fr};
 									});
-			console.log(req.body.fractions);
-			console.log(req.body.powers);
-
-			console.log("Fractions: " + fractions);
-			console.log("Powers: " + powers);
-
+									
 			userController.addNewSuperHero(username, name, secretIdentity, alignment, story, image, fractions, powers);
 			res.redirect(`/users/${username}/superheroes`);
 		})

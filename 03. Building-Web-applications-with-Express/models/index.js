@@ -64,15 +64,18 @@ module.exports.Users = {
 
 	},
 	addNewSuperHero(username, name, secretIdentity, alignment, story, image, fractionsToAdd, powersToAdd) {
-		let powers = powersToAdd.forEach(p => new Power({ name: p.name }));
-		let fractions = fractionsToAdd.forEach(fr => new Fraction({ name: fr.name }));
+		let powers = powersToAdd.map(p => {
+			return new Power({ name: p.name });
+		});
+		let fractions = fractionsToAdd.forEach(fr =>  {
+			new Fraction({ name: fr.name });
+			return fr.name;
+		});
 		let superhero = new Superhero({ name, secretIdentity, alignment, story, image, fractions, powers });
-		User.findOneAndUpdate({ "username": username }, { $push: { "superheroes": superhero } }, (err, user) => {
+		User.findOneAndUpdate({ "username": username }, { $push: { "superheroes": superhero } }, (err) => {
 			if (err) {
 				throw new Error(err);
 			}
-
-			console.log(user);
 		});
 	}
 };
