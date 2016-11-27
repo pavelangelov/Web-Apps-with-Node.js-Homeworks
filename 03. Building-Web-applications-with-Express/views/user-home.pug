@@ -12,5 +12,9 @@ body
 			| Update profile details
 		a(href="/logout" class="btn btn-danger")
 			| Logout
-	div.profile-details
-		img(src=image)
+	div.profile-details.row
+		img(src=image class="col-sm-5")
+		div.col-sm-6
+			a.col-sm-12(href=`/users/${username}/superheroes`) Favorite Superheroes
+			a.col-sm-12(href=`/users/${username}/fractions`) Favorite Fractions
+

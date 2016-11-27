@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+	meta(charset="UTF-8")
+	link(rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css")
+	title Home
+body
+	div.row
+		h1.col-sm-4.col-sm-offset-4
+			| Your Favorite Superheroes
+	a.btn.btn-primary.col-sm-offset-5(href=`/users/${username}/add-new-superhero`) Add new Superhero
+	if superheroes	
+		div.row
+			each superhero in superheroes
+				div.col-sm-5
+					img.col-sm-5(src= superhero.image)
+					div.col-sm-6
+						h2 Secret Identity: #{superhero.secretIdentity}
+						div Name: #{superhero.name}
+						div Alignment: #{superhero.alignment}
+						div Story: #{superhero.story}
+						div
+							each power in superhero.powers
+								| #{power.name},
+
+				

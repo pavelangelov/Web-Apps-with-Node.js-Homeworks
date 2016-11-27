@@ -30,5 +30,5 @@ countrySchema.pre("save", true, function (next, done) {
 });
 let Country;
 mongoose.model("Country", countrySchema);
-Country = mongoose.model("country");
+Country = mongoose.model("Country");
 module.exports = Country;

@@ -1,12 +1,12 @@
 "use strict";
 
 const User = require("./user-model");
-// const Superhero = require("./superhero-model");
-// const Fraction = require("./fraction-model");
-// const City = require("./city-model");
-// const Country = require("./country-model");
-// const Planet = require("./planet-model");
-// const Power = require("./power-model");
+const Superhero = require("./superhero-model");
+const Fraction = require("./fraction-model");
+const City = require("./city-model");
+const Country = require("./country-model");
+const Planet = require("./planet-model");
+const Power = require("./power-model");
 
 module.exports.Users = {
 	createUser(username, name, image) {
@@ -50,5 +50,29 @@ module.exports.Users = {
 					});
 				});
 		}
+	},
+	getUserSuperheroes(username) {
+		return new Promise((resolve, reject) => {
+			User.findOne({ "username": username }, "superheroes", (err, user) => {
+				if (err) {
+					return reject(err);
+				}
+				console.log("User int query " + user);
+				resolve(user.superheroes);
+			});
+		});
+
+	},
+	addNewSuperHero(username, name, secretIdentity, alignment, story, image, fractionsToAdd, powersToAdd) {
+		let powers = powersToAdd.forEach(p => new Power({ name: p.name }));
+		let fractions = fractionsToAdd.forEach(fr => new Fraction({ name: fr.name }));
+		let superhero = new Superhero({ name, secretIdentity, alignment, story, image, fractions, powers });
+		User.findOneAndUpdate({ "username": username }, { $push: { "superheroes": superhero } }, (err, user) => {
+			if (err) {
+				throw new Error(err);
+			}
+
+			console.log(user);
+		});
 	}
 };

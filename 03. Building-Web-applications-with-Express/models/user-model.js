@@ -16,7 +16,9 @@ let userSchema = new Schema({
 		minlength: 2,
 		maxlength: 20
 	},
-	image: String
+	image: String,
+	superheroes: [{}],
+	fractions: [{}]
 });
 
 userSchema.pre("save", true, function (next, done) {

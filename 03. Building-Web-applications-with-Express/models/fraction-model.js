@@ -16,8 +16,8 @@ let fractionSchema = new Schema({
 		type: String,
 		enum: ["good", "evil", "neutral"]
 	},
-	planets: [{type: Schema.Types.ObjectId, ref: "Planet"}],
-	superheroes: [{type: Schema.Types.ObjectId, ref: "Superhero"}]
+	planets: [{}],
+	superheroes: [{}]
 });
 fractionSchema.pre("save", true, function (next, done) {
 	let self = this;

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+	meta(charset="UTF-8")
+	link(rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css")
+	title Document
+body
+	h2.col-sm-6.col-sm-offset-4
+		| Please fill the info for the Superhero
+	div.col-sm-6.col-sm-offset-3
+		form(method="post" action=`/users/${username}/add-new-superhero`)
+			input(type="text" name="superheroName" placeholder="Name" class="form-control")
+			input(type="text" name="secretIdentity" placeholder="Secret Identity" class="form-control")
+			input(type="text" name="alignment" placeholder="Alignment" class="form-control")
+			input(type="text" name="story" placeholder="Story" class="form-control")
+			input(type="text" name="image" placeholder="Image" class="form-control")
+			input(type="text" name="fractions" placeholder="Fractions (separate by ',')" class="form-control")
+			input(type="text" name="powers" placeholder="Powers (separate by ',')" class="form-control")
+			input(type="submit" value="Create" class="form-control btn btn-success")
+	
