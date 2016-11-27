@@ -1,7 +1,7 @@
 "use strict";
 
 const mongoose = require("mongoose"),
-	Schema = mongoose.Schema();
+	Schema = mongoose.Schema;
 
 let superheroSchema = new Schema({
 	name: {
@@ -33,6 +33,20 @@ let superheroSchema = new Schema({
 	},
 	fractions: [{ type: Schema.Types.ObjectId, ref: "Fraction" }],
 	powers: [ {type: Schema.Types.ObjectId, ref: "Power"} ]
+});
+superheroSchema.pre("save", true, function (next, done) {
+	let self = this;
+	mongoose.models["Superhero"].findOne({ secretIdentity: self.secretIdentity }, function (err, superhero) {
+		if (err) {
+			done(err);
+		} else if (superhero) {
+			self.invalidate("secretIdentity", "secretIdentity must be unique");
+			done(new Error("secretIdentity must be unique"));
+		} else {
+			done();
+		}
+	});
+	next();
 });
 
 let Superhero;

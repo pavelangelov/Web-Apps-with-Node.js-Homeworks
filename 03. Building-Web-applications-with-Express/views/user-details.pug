@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+	meta(charset="UTF-8")
+	link(rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css")
+	title Update details
+body
+	div.col-sm-4.col-sm-offset-4
+		h3
+			| Update your name or image
+		form(method="post" action="/update/user/" + username id="register-form")
+				input(type="text" placeholder="Name" name="name" class="form-control")
+				input(type="text" placeholder="Image URL" name="image" class="form-control")
+				input(type="submit" value="Update" class="form-control btn btn-success")
+	

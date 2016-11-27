@@ -1,7 +1,7 @@
 "use strict";
 
 const mongoose = require("mongoose"),
-	Schema = mongoose.Schema();
+	Schema = mongoose.Schema;
 
 let fractionSchema = new Schema({
 	name: {
@@ -18,6 +18,20 @@ let fractionSchema = new Schema({
 	},
 	planets: [{type: Schema.Types.ObjectId, ref: "Planet"}],
 	superheroes: [{type: Schema.Types.ObjectId, ref: "Superhero"}]
+});
+fractionSchema.pre("save", true, function (next, done) {
+	let self = this;
+	mongoose.models["Fraction"].findOne({ name: self.name }, function (err, fraction) {
+		if (err) {
+			done(err);
+		} else if (fraction) {
+			self.invalidate("name", "name must be unique");
+			done(new Error("name must be unique"));
+		} else {
+			done();
+		}
+	});
+	next();
 });
 
 let Fraction;

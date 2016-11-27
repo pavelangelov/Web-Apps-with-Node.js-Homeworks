@@ -1,7 +1,7 @@
 "use strict";
 
 const mongoose = require("mongoose"),
-	Schema = mongoose.Schema();
+	Schema = mongoose.Schema;
 
 let citySchema = new Schema({
 	name: {
@@ -13,6 +13,20 @@ let citySchema = new Schema({
 		dropDups: true
 	},
 	country: {type: Schema.Types.ObjectId, ref: "Country"}
+});
+citySchema.pre("save", true, function (next, done) {
+	let self = this;
+	mongoose.models["City"].findOne({ name: self.name }, function (err, city) {
+		if (err) {
+			done(err);
+		} else if (city) {
+			self.invalidate("name", "name must be unique");
+			done(new Error("name must be unique"));
+		} else {
+			done();
+		}
+	});
+	next();
 });
 
 let City;

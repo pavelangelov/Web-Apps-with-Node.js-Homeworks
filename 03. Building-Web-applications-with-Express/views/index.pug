@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+	meta(charset="UTF-8")
+	link(rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css")
+	title Superheroes
+body
+	div.login.col-sm-3
+		h3
+			| Log in
+		form(method="get" action="/login" id="login-form" class="form")
+			input(type="text" placeholder="Username" name="username" class="form-control")
+			input(type="submit" value="Log in" class="form-control btn btn-primary")
+
+	div.register.col-sm-4.col-sm-offset-3
+		h3
+			| Register
+		form(method="post" action="/register" id="register-form")
+			input(type="text" placeholder="Username" name="username" class="form-control")
+			input(type="text" placeholder="Name" name="name" class="form-control")
+			input(type="text" placeholder="Image URL" name="image" class="form-control")
+			input(type="submit" value="Register" class="form-control btn btn-success")
+	

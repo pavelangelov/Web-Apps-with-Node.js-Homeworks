@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+	meta(charset="UTF-8")
+	link(rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css")
+	title Home
+body
+	div.row
+		h1.col-sm-4
+			| #{name}`s profile
+		a(href=`/users/${username}/details` class="btn btn-default col-sm-offset-5")
+			| Update profile details
+		a(href="/logout" class="btn btn-danger")
+			| Logout
+	div.profile-details
+		img(src=image)

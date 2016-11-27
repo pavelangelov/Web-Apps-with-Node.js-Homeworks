@@ -2,9 +2,12 @@
 "use strict";
 
 const express = require("express");
+const constants = require("./config/constants");
 const config = require("./config/config");
-let app = express();
 
+require("./config/mongoose")(constants.connectionString);
+
+let app = express();
 let port = config.port;
 
 require("./config/express")(config, app);

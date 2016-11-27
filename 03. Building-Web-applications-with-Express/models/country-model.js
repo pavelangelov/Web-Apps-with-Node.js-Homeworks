@@ -1,7 +1,7 @@
 "use strict";
 
 const mongoose = require("mongoose"),
-	Schema = mongoose.Schema();
+	Schema = mongoose.Schema;
 
 let countrySchema = new Schema({
 	name: {
@@ -14,7 +14,20 @@ let countrySchema = new Schema({
 	},
 	planet: { type: Schema.Types.ObjectId, ref: "Planet" }
 });
-
+countrySchema.pre("save", true, function (next, done) {
+	let self = this;
+	mongoose.models["Country"].findOne({ name: self.name }, function (err, country) {
+		if (err) {
+			done(err);
+		} else if (country) {
+			self.invalidate("name", "name must be unique");
+			done(new Error("name must be unique"));
+		} else {
+			done();
+		}
+	});
+	next();
+});
 let Country;
 mongoose.model("Country", countrySchema);
 Country = mongoose.model("country");
