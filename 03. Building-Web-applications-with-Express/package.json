@@ -1,0 +1,17 @@
+{
+  "name": "web-applications-with-express",
+  "version": "1.0.0",
+  "description": "Homework for workshop",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pavel Angelov",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongoose": "^4.7.0",
+    "path": "^0.12.7",
+    "pug": "^2.0.0-beta6"
+  }
+}

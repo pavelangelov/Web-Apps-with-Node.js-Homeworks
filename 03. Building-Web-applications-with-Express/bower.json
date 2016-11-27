@@ -1,0 +1,17 @@
+{
+  "name": "web-applications-with-express",
+  "description": "Homework for workshop",
+  "main": "server.js",
+  "authors": [
+    "Pavel Angelov"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/pavelangelov/Web-Apps-with-Node.js-Homeworks",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
